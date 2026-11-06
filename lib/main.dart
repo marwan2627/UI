@@ -1,27 +1,90 @@
-void main()
-{
-    int myNumber = 10;
-double myDouble=3.14;
-String myString="Hello, World!";
-bool myBool=true;
-print('My number is: $myNumber');
-print('My double is: $myDouble');
-print('My string is: $myString');
-print('My boolean is: $myBool');
-int result = myNumber + 5;
-print('Result of addition: $result');
-if (myBool==true) {
-    print('myBool is true');
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
 }
-else {
-    print('myBool is false');
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Theme Example',
+
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: 72.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.blueAccent,
+          ),
+
+          headlineMedium: TextStyle(
+            fontSize: 36.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+
+          bodyLarge: TextStyle(
+            fontSize: 14.0,
+            fontWeight: FontWeight.normal,
+            color: Colors.black87,
+          ),
+        ),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            textStyle: TextStyle(fontSize: 18),
+          ),
+        ),
+      ),
+
+      home: MyHomePage(),
+    );
+  }
 }
-for (int i = 0; i < 5; i++) {
-    print('Loop iteration: $i');
-}
-List<int> numbers = [1, 2, 3, 4, 5];
-print('First number in the list: ${numbers[0]}');
-print('Length of the list: ${numbers.length}');
-Map<String, int>ages={'Kiran':30,'Raj':25,'Alekhya':35};
-print('Age of Kiran: ${ages['Kiran']}');
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Themed AppBar'),
+      ),
+
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Hello, World!',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+
+            SizedBox(height: 20),
+
+            Text(
+              'Welcome to the themed app.',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+
+            SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Click Me'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
