@@ -9,81 +9,58 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Theme Example',
-
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-
-        textTheme: TextTheme(
-          headlineLarge: TextStyle(
-            fontSize: 72.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.blueAccent,
-          ),
-
-          headlineMedium: TextStyle(
-            fontSize: 36.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue,
-          ),
-
-          bodyLarge: TextStyle(
-            fontSize: 14.0,
-            fontWeight: FontWeight.normal,
-            color: Colors.black87,
-          ),
-        ),
-
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
-            textStyle: TextStyle(fontSize: 18),
-          ),
-        ),
       ),
-
       home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Themed AppBar'),
+        title: Text('Stateless and Stateful Demo'),
       ),
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Hello, World!',
-              style: Theme.of(context).textTheme.headlineLarge,
+              'This text is in a Stateless Widget:',
             ),
-
-            SizedBox(height: 20),
-
+            SizedBox(height: 10),
             Text(
-              'Welcome to the themed app.',
-              style: Theme.of(context).textTheme.headlineLarge,
+              'You have pressed the button this many times:',
             ),
-
-            SizedBox(height: 20),
-
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Click Me'),
+            SizedBox(height: 10),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
       ),
     );
   }
